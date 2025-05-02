@@ -49,11 +49,22 @@ const subscriptionSChema=new mongoose.Schema({
     },
     renewalDate:{
         type:Date,
-        required:true,
         validate:{
             validator:function(v){
                 return v>this.startingDate
         },  
         message:'renewal date must be after start date'
     },
+},
+
+user:{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:'User',
+    required:true,
+    index:true
+}
 },{timestamps:true})
+
+subscriptionSChema.pre('save',function(next){
+
+})
